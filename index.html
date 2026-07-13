@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Haru's</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="CSS/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <ul class="nav-lista">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#reseñas">Reseñas</a></li>
+                    <li><a href="#contacto">Club Haru's</a></li>
+                    <li><a href="#footer-info">Info</a></li>
+                    <li>
+                        <button id="btn-abrir-carrito" class="menu-carrito-btn">
+                            🛒 Carrito (<span id="cantidad-carrito">0</span>)
+                        </button>
+                    </li>
+
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Sección de video de fondo -->
+            <section id="inicio" class="portada">
+                <video autoplay muted loop playsinline class="video-fondo">
+                    <source src="video/giphy_tarro_galletas.mp4" type="video/mp4">
+                </video>
+                
+                <div class="portada-texto">
+                    <img src="img/IMG_marca.PNG" alt="Haru's - Cakes & Bakes" class="marca-img">
+                </div>
+            </section>
+
+            <!-- Sección de productos -->
+            <section id="productos" class="seccion-padding">
+                <h1>Mini Tortas</h1>
+                <h2>♥ CLASSIC CAKES</h2>
+                <div class="contenedor-flex">
+                    <div class="caja-producto">
+                        <img src="img/1-lemon pie.jpg" alt="Lemon Pie">
+                        <p>Lemon Pie</p>
+                        <p>Precio: $7000</p>
+                        <button class="btn-agregar" data-nombre="Lemon Pie">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/2-torta brownie.jpg" alt="Torta Brownie">
+                        <p>Torta Brownie</p>
+                        <p>Precio: $7000</p>
+                        <button class="btn-agregar" data-nombre="Torta Brownie">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/3-chocotorta.jpg" alt="Chocotorta">
+                        <p>Chocotorta</p>
+                        <p>Precio: $7000</p>
+                        <button class="btn-agregar" data-nombre="Chocotorta">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/4-tiramisu.jpg" alt="Tiramisú">
+                        <p>Tiramisú</p>
+                        <p>Precio: $7000</p>
+                        <button class="btn-agregar" data-nombre="Tiramisú">Agregar al carrito</button>
+                    </div>    
+                </div>
+                <h2>♥ SPECIALTY CAKES</h2>
+                <div class="contenedor-flex">
+                    <div class="caja-producto">        
+                        <img src="img/1-red velvet.jpg" alt="Red Velvet">
+                        <p>Red Velvet</p>
+                        <p>Precio: $7500</p>
+                        <button class="btn-agregar" data-nombre="Red Velvet">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/2-mini-matilda.jpg" alt="Matilda">
+                        <p>Matilda</p>
+                        <p>Precio: $7500</p>
+                        <button class="btn-agregar" data-nombre="Matilda">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/3-choco carrot cake.jpg" alt="Choco Carrot Cake">
+                        <p>Choco Carrot Cake</p>
+                        <p>Precio: $7500</p>
+                        <button class="btn-agregar" data-nombre="Choco Carrot Cake">Agregar al carrito</button>
+                    </div>
+                </div>
+                <h1>Cookies & More</h1>
+                <h2>♥ DULCE</h2>
+                <div class="contenedor-flex">
+                    <div class="caja-producto">
+                        <img src="img/1-cookie_monster.jpg" alt="Cookie Monster">
+                        <p>Cookie Monster</p>
+                        <p>Precio: $3200</p>
+                        <button class="btn-agregar" data-nombre="Cookie Monster">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/2-cookie classic bear.jpg" alt="Cookie Classic Bear">
+                        <p>Cookie Classic Bear</p>
+                        <p>Precio: $2700</p>
+                        <button class="btn-agregar" data-nombre="Cookie Classic Bear">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/3-cookie m&m.jpg" alt="Cookie m&m">
+                        <p>Cookie M&M</p>
+                        <p>Precio: $3200</p>
+                        <button class="btn-agregar" data-nombre="Cookie M&M">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/4-cookie kinder bueno.jpg" alt="Cookie Kinder">
+                        <p>Cookie Kinder</p>
+                        <p>Precio: $3200</p>
+                        <button class="btn-agregar" data-nombre="Cookie Kinder">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/5-browkie.jpg" alt="BroKie">
+                        <p>Brookie</p>
+                        <p>Precio: $2700</p>
+                        <button class="btn-agregar" data-nombre="Brookie">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/6-brownie.jpg" alt="Brownie">
+                        <p>Brownie</p>
+                        <p>Precio: $2000</p>
+                        <button class="btn-agregar" data-nombre="Brownie">Agregar al carrito</button>
+                    </div>
+                </div>
+                <h2>♥ SALADO</h2>
+                <div class="contenedor-flex">
+                    <div class="caja-producto">
+                        <img src="img/1-chipacitos.jpg" alt="Chipacitos">
+                        <p>Chipá x 8 unid</p>
+                        <p>Precio: $3600</p>
+                        <button class="btn-agregar" data-nombre="Chipá x 8 unid">Agregar al carrito</button>
+                    </div>
+                    <div class="caja-producto">
+                        <img src="img/2-tostados jyq.jpg" alt="Tostados">
+                        <p>Tostado x 3 unid</p>
+                        <p>Precio: $4500</p>
+                        <button class="btn-agregar" data-nombre="Tostado x 3 unid">Agregar al carrito</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección de Reseñas con carrusel-->
+            <section id="reseñas" class="seccion-padding fondo-beige">
+                <h1>Lo que dicen nuestros clientes</h1>
+                <div class="contenedor-flex carrusel-resenas">
+                    <div class="caja-resena">
+                        <p>"Las mejores cookies del mundo!"</p>
+                        <p>~ Oriana</p>
+                    </div>    
+                    <div class="caja-resena">
+                        <p>"La torta de cumple fue un éxito."</p>
+                        <p>~ Luca</p>
+                    </div>
+                    <div class="caja-resena">
+                        <p>"Increíble sabor, muy recomendadas"</p>
+                        <p>~ Leia</p>
+                    </div>
+                    <div class="caja-resena">
+                        <p>"Los chipá son un viaje de ida..."</p>
+                        <p>~ Cristian</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formulario de fidelización -->
+            <section id="contacto" class="seccion-padding">
+                <h1>Unite al Club de Haru's 🍪</h1>
+                <h2>Recibí regalos en tu cumple y promos exclusivas</h2>
+                <form action="https://formspree.io/f/meenznpv" method="POST" class="formulario-flex">
+                    <input type="text" name="nombre" id="nombre" minlength="3" placeholder=" Tu Nombre" required>
+                    <input type="email" name="email" id="email" placeholder=" Tu E-mail" required>
+                    <textarea name="mensaje" id="mensaje" maxlength="400" placeholder=" ¿Querés dejarnos un comentario o sugerencia?"></textarea>
+                    <label>Tu fecha de nacimiento:</label>
+                    <input type="date" name="fecha" id="fecha">
+                    <label>
+                        <input type="checkbox" name="suscripcion-novedades" id="suscripcion-novedades"> 
+                        Quiero recibir novedades y lanzamientos
+                    </label>
+                    <button type="submit">Unirme al Club</button>
+                </form>
+            </section>
+        </main>
+
+        <!-- Pie de página informativo -->
+        <footer id="footer-info">
+            <div class="footer-contenedor">
+                <div class="footer-info">
+                    <h3>Punto de Retiro</h3>
+                    <p>📍 Calle Falsa 123, Buenos Aires</p>
+                    <p>🕰️ Lun a Sáb de 15 a 20hs</p>
+                </div>
+
+                <div class="footer-pedidos">
+                    <h3>Pedidos</h3>
+                    <a href="https://wa.me" target="_blank" class="btn-footer-wa">📲 11 1234 5678</a>
+                </div>
+
+                <div class="footer-pagos">
+                    <h3>Medios de Pago</h3>
+                    <p>💵 Efectivo y Transferencia</p>
+                    <p>💳 Débito y Crédito</p>
+                </div>
+
+                <div class="footer-redes">
+                    <h3>Seguinos</h3>
+                    <ul class="redes-lista">
+                        <li><a href="https://instagram.com" target="_blank">📸 Instagram</a></li>
+                        <li><a href="https://facebook.com" target="_blank">👥 Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">&copy; Copyright 2024 - Haru's | Todos los derechos reservados</p>
+        </footer>
+
+        <!-- Ventana Emergente del Carrito (Modal) -->
+        <div id="ventana-carrito" class="carrito-modal">
+            <div class="carrito-modal-contenido">
+                
+                <button id="btn-cerrar-carrito" class="btn-cerrar-modal">✕</button>
+                
+                <h3 class="carrito-modal-titulo">Resumen de tu Pedido</h3>
+                <!-- Lista de compras  -->
+                <ul id="items-carrito" class="carrito-modal-lista"></ul>
+                
+                <!-- Totales y Acciones finales -->
+                <div class="carrito-modal-pie">
+                    <p class="carrito-modal-total">
+                        <span>Total a pagar:</span>
+                        <strong id="total-carrito">$0</strong>
+                    </p>
+                    <div class="carrito-modal-botones">
+                        <button id="btn-vaciar" class="btn-carrito-accion btn-vaciar-carrito">Vaciar Carrito</button>
+                        <button id="btn-pagar" class="btn-carrito-accion btn-pagar-carrito">Pagar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ENLACE A JAVASCRIPT -->
+        <script src="carrito.js"></script>
+
+    </body>
+</html>
