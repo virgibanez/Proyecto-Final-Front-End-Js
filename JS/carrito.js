@@ -1,21 +1,21 @@
 /*----- Lista de productos -----*/
 let productos = [
-    { nombre: "Lemon Pie", precio: 7000 },
-    { nombre: "Torta Brownie", precio: 7000 },
-    { nombre: "Chocotorta", precio: 7000 },
-    { nombre: "Tiramisú", precio: 7000 },
-    { nombre: "Red Velvet", precio: 7500 },
-    { nombre: "Matilda", precio: 7500 },
-    { nombre: "Choco Carrot Cake", precio: 7500 },
-    { nombre: "Cookie Monster", precio: 3200 },
-    { nombre: "Cookie Classic Bear", precio: 2700 },
-    { nombre: "Cookie M&M", precio: 3200 },
-    { nombre: "Cookie Kinder", precio: 3200 },
-    { nombre: "Brookie", precio: 2700 },
-    { nombre: "Brownie", precio: 2000 },
-    { nombre: "Chipá x 8 unid", precio: 3600 },
-    { nombre: "Tostado x 3 unid", precio: 4500 }
-]
+    { nombre: "Lemon Pie", precio: 7000, stock: 2 },
+    { nombre: "Torta Brownie", precio: 7000, stock: 2 },
+    { nombre: "Chocotorta", precio: 7000, stock: 2 },
+    { nombre: "Tiramisú", precio: 7000, stock: 2 },
+    { nombre: "Red Velvet", precio: 7500, stock: 2 },
+    { nombre: "Matilda", precio: 7500, stock: 2 },
+    { nombre: "Choco Carrot Cake", precio: 7500, stock: 2 },
+    { nombre: "Cookie Monster", precio: 3200, stock: 6 },
+    { nombre: "Cookie Classic Bear", precio: 2700, stock: 6 },
+    { nombre: "Cookie M&M", precio: 3200, stock: 6 },
+    { nombre: "Cookie Kinder", precio: 3200, stock: 6 },
+    { nombre: "Brookie", precio: 2700, stock: 6 },
+    { nombre: "Brownie", precio: 2000, stock: 6 },
+    { nombre: "Chipá x 8 unid", precio: 3600, stock: 6 },
+    { nombre: "Tostado x 3 unid", precio: 4500, stock: 6 }
+];
 
 /* ----- carrito -----*/
 let carrito = []; 
@@ -29,17 +29,32 @@ function cargarCarrito() {
     let guardado = localStorage.getItem(CLAVE_CARRITO);
     if (guardado) {
         carrito = JSON.parse(guardado);
+        
+        for (let item of carrito) {
+            let prodOriginal = productos.find(p => p.nombre === item.nombre);
+            if (prodOriginal) {
+                prodOriginal.stock -= item.cantidad;
+            }
+        }
     }
 }
 
 function agregarProducto(producto) {
+    //validación de stock
+    if (producto.stock <= 0) {
+        alert("¡Lo sentimos! No queda más stock de: " + producto.nombre);
+        return;
+    }
+
     let itemExistente = carrito.find(item => item.nombre === producto.nombre);
     if (itemExistente) {
         itemExistente.cantidad += 1;
     } else {
         carrito.push({ nombre: producto.nombre, precio: producto.precio, cantidad: 1 });
     }
-    console.log(producto.nombre + " agregado al carrito");
+
+    producto.stock -= 1;
+    console.log(producto.nombre + " agregado. Quedan: " + producto.stock);
     actualizarCarrito();
 }
 
@@ -74,6 +89,7 @@ function conectarBotonesCatalogo() {
         boton.addEventListener("click", function () {
             let nombreAtributo = boton.getAttribute("data-nombre");
             let productoEncontrado = productos.find(p => p.nombre === nombreAtributo);
+            
             if (productoEncontrado) {
                 agregarProducto(productoEncontrado);
             }
@@ -82,19 +98,47 @@ function conectarBotonesCatalogo() {
 }
 
 function cambiarCantidad(indice, cambio) {
-    carrito[indice].cantidad += cambio;
-    if (carrito[indice].cantidad <= 0) {
-        carrito.splice(indice, 1);
+    let item = carrito[indice];
+    let prodOriginal = productos.find(p => p.nombre === item.nombre);
+
+    if (cambio === 1) {
+        if (prodOriginal && prodOriginal.stock <= 0) {
+            alert("No hay más unidades disponibles de este producto.");
+            return;
+        }
+        item.cantidad += 1;
+        if (prodOriginal) prodOriginal.stock -= 1;
+    } else if (cambio === -1) {
+        item.cantidad -= 1;
+        if (prodOriginal) prodOriginal.stock += 1;
+        
+        if (item.cantidad <= 0) {
+            carrito.splice(indice, 1);
+        }
     }
     actualizarCarrito();
 }
 
 function quitarProducto(indice) {
+    let item = carrito[indice];
+    let prodOriginal = productos.find(p => p.nombre === item.nombre);
+    
+    if (prodOriginal) {
+        prodOriginal.stock += item.cantidad;
+    }
+    
     carrito.splice(indice, 1);
     actualizarCarrito();
 }
 
 function vaciarCarrito() {
+    for (let item of carrito) {
+        let prodOriginal = productos.find(p => p.nombre === item.nombre);
+        if (prodOriginal) {
+            prodOriginal.stock += item.cantidad;
+        }
+    }
+
     carrito = [];
     actualizarCarrito();
 }
@@ -108,7 +152,7 @@ function actualizarCarrito() {
     listaCarrito.innerHTML = "";
 
     if (carrito.length === 0) {
-        listaCarrito.innerHTML = "<li class='carrito-vacio' style='color: #7f8c8d; padding: 10px 0; text-align: center;'>Tu carrito está vacío.</li>";
+        listaCarrito.innerHTML = "<li class='carrito-vacio'>Tu carrito está vacío.</li>";
     } else {
         for (let i = 0; i < carrito.length; i++) {
             let item = carrito[i];
@@ -171,12 +215,13 @@ function finalizarCompra() {
     let confirmar = confirm("Vas a ser redirigido a Mercado Pago para abonar $" + total + ".\n\n¿Deseas continuar?");
     
     if (confirmar) {
-        vaciarCarrito();
+        carrito = [];
+        localStorage.removeItem(CLAVE_CARRITO);
         window.location.href = "https://mercadopago.com.ar";
     }
 }
 
-/* ----------- 5) Arranque: cuando carga la página ----------- */
+/* ---------- Arranque ----------- */
 document.addEventListener("DOMContentLoaded", function () {
     cargarCarrito();
     conectarBotonesCatalogo();
@@ -192,13 +237,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (botonPagar) botonPagar.addEventListener("click", finalizarCompra);
 
     if (btnAbrir) {
-        btnAbrir.addEventListener("click", function() {
+        btnAbrir.addEventListener("click", function(evento) {
+            evento.preventDefault();
             ventana.style.display = "flex"; 
         });
     }
 
     if (btnCerrar) {
-        btnCerrar.addEventListener("click", function() {
+        btnCerrar.addEventListener("click", function(evento) {
+            evento.preventDefault();
             ventana.style.display = "none";
         });
     }
