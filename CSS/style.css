@@ -427,7 +427,7 @@ footer a, footer p{
     border: none;
     font-size: 18px !important;
     cursor: pointer;
-    color: #7f8c8d;
+    color: #c0392b;
     font-family: Arial, sans-serif !important;
     font-weight: bold;
     padding: 5px;
@@ -520,12 +520,14 @@ footer a, footer p{
 .btn-quitar {
     background: none;
     border: none;
-    color: #c0392b;
     cursor: pointer;
-    font-weight: bold;
     margin-left: 5px;
-    line-height: 24px !important;
 }
+
+.btn-quitar:hover {
+    background: #5a9cf1;
+}
+
 
 .carrito-modal-pie {
     border-top: 2px solid #cedae3;
@@ -566,5 +568,5 @@ footer a, footer p{
 }
 
 .btn-pagar-carrito:hover {
-    background-color: #466d78;
+    background-color: #477dca;
 }

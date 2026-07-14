@@ -169,7 +169,7 @@ function actualizarCarrito() {
                     <span class="item-cantidad-texto">${item.cantidad}</span>
                     <button class="btn-control-cantidad btn-mas" data-indice="${i}">+</button>
                     <strong class="item-subtotal-texto">$${item.precio * item.cantidad}</strong>
-                    <button class="btn-quitar" data-indice="${i}">✕</button>
+                    <button class="btn-quitar" data-indice="${i}">🗑️</button>
                 </div>
             `;
             listaCarrito.appendChild(elementoLi);
@@ -202,22 +202,46 @@ function actualizarCarrito() {
     mostrarCarrito();
 }
 
-/* ------- Pago (Simulador de desvío a Mercado Pago) ------ */
+/* ------- Pago ------ */
 function finalizarCompra() {
     if (carrito.length === 0) {
         alert("Tu carrito está vacío.");
         return;
     }
 
+    let telefonoVendedor = "5491156332956"; 
+
+    let lineasMensaje = [];
+    lineasMensaje.push("¡Hola! Quiero hacer un pedido:");
+    lineasMensaje.push("");
+
+    carrito.forEach(producto => {
+        let nombreProd = producto.nombre || producto.title || "Producto";
+        let cantProd = producto.cantidad || producto.quantity || 1;
+        let precioProd = producto.precio || producto.price || 0;
+        let subtotal = precioProd * cantProd;
+
+        lineasMensaje.push(`• *${nombreProd}* (x${cantProd}) - $${subtotal}`);
+    });
+
     let total = calcularTotal();
-    console.log("Iniciando desvío controlado de pasarela de pago...");
+    lineasMensaje.push("");
+    lineasMensaje.push(`*Total a pagar:* $${total}`);
+    lineasMensaje.push("");
+    lineasMensaje.push("Por favor, coordinemos los detalles del pago y el envío.");
+    lineasMensaje.push("¡Muchas gracias!");
+
+    let textoCompleto = lineasMensaje.join("\n");
+    let mensajeFormateado = encodeURIComponent(textoCompleto);
+
+    alert('Redireccionando a WhatsApp con tu lista de compras para coordinar el pago...');
+    window.open("https://api.whatsapp.com/send?phone=" + telefonoVendedor + "&text=" + mensajeFormateado, "_blank");
+
+    carrito = [];
+    localStorage.removeItem(CLAVE_CARRITO);
     
-    let confirmar = confirm("Vas a ser redirigido a Mercado Pago para abonar $" + total + ".\n\n¿Deseas continuar?");
-    
-    if (confirmar) {
-        carrito = [];
-        localStorage.removeItem(CLAVE_CARRITO);
-        window.location.href = "https://www.mercadopago.com.ar";
+    if (typeof actualizarCarrito === "function") {
+        actualizarCarrito();
     }
 }
 
