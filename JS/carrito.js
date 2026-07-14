@@ -162,13 +162,13 @@ function actualizarCarrito() {
             elementoLi.innerHTML = `
                 <div class="carrito-item-detalles">
                     <span>${item.nombre}</span><br>
-                    <small>${item.precio} c/u</small>
+                    <small>$${item.precio} c/u</small>
                 </div>
                 <div class="carrito-item-acciones">
                     <button class="btn-control-cantidad btn-menos" data-indice="${i}">-</button>
                     <span class="item-cantidad-texto">${item.cantidad}</span>
                     <button class="btn-control-cantidad btn-mas" data-indice="${i}">+</button>
-                    <strong class="item-subtotal-texto">${item.precio * item.cantidad}</strong>
+                    <strong class="item-subtotal-texto">$${item.precio * item.cantidad}</strong>
                     <button class="btn-quitar" data-indice="${i}">✕</button>
                 </div>
             `;
@@ -217,7 +217,7 @@ function finalizarCompra() {
     if (confirmar) {
         carrito = [];
         localStorage.removeItem(CLAVE_CARRITO);
-        window.location.href = "https://mercadopago.com.ar";
+        window.location.href = "https://www.mercadopago.com.ar";
     }
 }
 

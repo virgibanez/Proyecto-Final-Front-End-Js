@@ -19,9 +19,8 @@
                     <li><a href="#reseñas">Reseñas</a></li>
                     <li><a href="#contacto">Club Haru's</a></li>
                     <li><a href="#footer-info">Info</a></li>
-                    <li><a href="#" id="btn-abrir-carrito">
+                    <li><a style="cursor: pointer;" id="btn-abrir-carrito">
                             🛒 Carrito (<span id="cantidad-carrito">0</span>)</a></li>
-
                 </ul>
             </nav>
         </header>
@@ -223,10 +222,12 @@
         <div id="ventana-carrito" class="carrito-modal">
             <div class="carrito-modal-contenido">
                 
-                <button id="btn-cerrar-carrito" class="btn-cerrar-modal">✕</button>
+                <div class="carrito-modal-cabecera">
+                    <h3 class="carrito-modal-titulo">Resumen de tu Pedido</h3>
+                    <button id="btn-cerrar-carrito" class="btn-cerrar-modal">✕</button>
+                </div>
                 
-                <h3 class="carrito-modal-titulo">Resumen de tu Pedido</h3>
-                <!-- Lista de compras  -->
+                <!-- Lista de compras -->
                 <ul id="items-carrito" class="carrito-modal-lista"></ul>
                 
                 <!-- Totales y Acciones finales -->
@@ -244,7 +245,7 @@
         </div>
 
         <!-- ENLACE A JAVASCRIPT -->
-        <script src="carrito.js"></script>
+        <script src="JS/carrito.js"></script>
 
     </body>
 </html>
